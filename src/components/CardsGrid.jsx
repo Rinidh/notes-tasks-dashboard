@@ -1,12 +1,17 @@
 import React from 'react';
+import { Card } from './Card';
+import '../style/CardsGrid.css';
 
-export const CardsGrid = () => {
-  const arr = Array(4);
+export const CardsGrid = ({ notes, tasks }) => {
+  const cards = [...notes, ...tasks];
+
   return (
-    <div className="row">
-      {arr.map((_, index) => {
-        return <div className="col-4">{`${index + 1}`}</div>;
-      })}
+    <div className="cards-grid">
+      {cards.map((card) => (
+        <Card key={card.id} type={card.type}>
+          {card.content}
+        </Card>
+      ))}
     </div>
   );
 };

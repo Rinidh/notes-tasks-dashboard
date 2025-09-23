@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Create } from './components/Create';
 import { CardsGrid } from './components/CardsGrid';
 import './style/App.css';
 import './style/fonts.css';
 
 const App = () => {
+  const [notes, setNotes] = useState([
+    { id: 1, type: 'note', content: 'This is a sample note/quote.' },
+  ]);
+  const [tasks, setTasks] = useState([
+    { id: 1, type: 'task', content: 'This is a sample task.' },
+  ]);
+
   return (
     <div>
       <header>
@@ -12,7 +19,7 @@ const App = () => {
         <Create />
       </header>
       <main>
-        <CardsGrid />
+        <CardsGrid notes={notes} tasks={tasks} />
       </main>
     </div>
   );
