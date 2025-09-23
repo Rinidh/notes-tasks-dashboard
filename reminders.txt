@@ -1,0 +1,42 @@
+  Make a commit
+
+
+
+
+----------------------
+See https://chatgpt.com/c/68cff80b-ad88-8333-b573-5f559562c2fe for code example & extra cool additions to make
+
+📌 Mini Project Idea: Notes & Tasks Dashboard with API Integration:
+
+A small app that lets users:
+
+Fetch suggested motivational quotes (from an external API).
+  A button for fetching a random quote (turns into note) & a button for creating new note
+
+Create personal notes or tasks (stored in local state).
+  Arrange all notes in grid
+
+Use a reducer for managing task state (add, toggle complete, delete).
+
+Use context to share global settings (like theme or username).
+
+Use refs for input focus.
+
+Extract a custom hook for API fetching.
+
+This mimics the functionality of a real productivity app, and you could later integrate it into a larger app (like a personal planner, or even a shop dashboard for tasks/orders).
+
+🛠️ Key Hook Usage
+
+useState → For local note/task inputs.
+
+useReducer → For managing tasks with multiple actions.
+
+useEffect → To fetch a motivational quote from an API (like quotable.io
+).
+
+useContext → Provide global settings (like theme mode: light/dark, or user profile info).
+
+useRef → Focus the input box after adding a new task.
+
+Custom Hook → useFetchQuote() that handles fetching and error/loading states.

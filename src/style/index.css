@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Alan Sans', 'Lato', sans-serif;
+}
+
+:root {
+  --brand-900: #1a1100;
+  --brand-800: #3b2600;
+  --brand-600: #c98900;
+  --brand-500: #f0a500;
+}
+
+html {
+  font-size: 10px;
+  background-color: var(--brand-900);
+  color: #fff;
+}
+
+body {
+}
