@@ -3,14 +3,17 @@ import { Create } from './components/Create';
 import { CardsGrid } from './components/CardsGrid';
 import './style/App.css';
 import './style/fonts.css';
+import useQuotes from './hooks/useQuotes';
 
 const App = () => {
   const [notes, setNotes] = useState([
     { id: 1, type: 'note', content: 'This is a sample note/quote.' },
   ]);
   const [tasks, setTasks] = useState([
-    { id: 1, type: 'task', content: 'This is a sample task.' },
+    { id: 2, type: 'task', content: 'This is a sample task.' },
   ]);
+
+  const { error, quotes, loading, setTriggerFetch } = useQuotes();
 
   return (
     <div>
