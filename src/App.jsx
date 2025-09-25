@@ -4,6 +4,7 @@ import { CardsGrid } from './components/CardsGrid';
 import './style/App.css';
 import './style/fonts.css';
 import useQuotes from './hooks/useQuotes';
+import { Dialog } from './components/Dialog';
 
 const App = () => {
   const [notes, setNotes] = useState([
@@ -23,6 +24,7 @@ const App = () => {
       </header>
       <main>
         <CardsGrid notes={notes} tasks={tasks} />
+        <Dialog />
       </main>
     </div>
   );

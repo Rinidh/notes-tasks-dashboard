@@ -8,7 +8,7 @@ export default function useQuotes() {
 
   useEffect(() => {
     const fetchQuotes = async () => {
-      // if (!triggerFetch) return;
+      if (!triggerFetch) return;
 
       try {
         const response = await fetch('https://api.api-ninjas.com/v1/quotes', {

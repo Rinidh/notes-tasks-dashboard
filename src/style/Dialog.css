@@ -1,0 +1,46 @@
+dialog {
+  background-color: var(--brand-900);
+  border: 0.3em solid var(--brand-600);
+  width: 40vw;
+  min-height: 40vh;
+  border-radius: 2rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+}
+
+dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+dialog::backdrop {
+  background-color: #00000084;
+  backdrop-filter: blur(2px);
+}
+
+dialog .content {
+  border: 2px solid red;
+  flex: 1;
+}
+
+dialog .buttons {
+  height: 10%;
+  padding: 0 1em;
+  display: flex;
+  justify-content: right;
+}
+
+dialog button {
+  padding: 0.8em;
+  margin: 0.5em;
+  background-color: var(--brand-500);
+  color: #000;
+  border-radius: 0.6em;
+  transition: all 200ms ease;
+}
+
+dialog button:hover {
+  background-color: var(--brand-600);
+}

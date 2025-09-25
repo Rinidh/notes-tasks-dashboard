@@ -1,4 +1,4 @@
-  Make a commit
+fetch quotes, show in dialog & make into note if accepted
 
 
 
