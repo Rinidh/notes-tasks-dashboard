@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+const apiKey = process.env.REACT_APP_QUOTES_API_KEY;
+
 export default function useQuotes() {
   const [quotes, setQuotes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +17,7 @@ export default function useQuotes() {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'X-Api-Key': 'kFS73u5ZMnLPQlOD/5XPig==1iFrOIKkoIQZMmEC',
+            'X-Api-Key': apiKey,
           },
         });
         const data = await response.json();
