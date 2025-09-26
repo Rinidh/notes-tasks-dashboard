@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const apiKey = process.env.REACT_APP_QUOTES_API_KEY;
+const apiKey = import.meta.env.VITE_QUOTES_API_KEY;
 
 export default function useQuotes() {
   const [quotes, setQuotes] = useState([]);
@@ -10,7 +10,7 @@ export default function useQuotes() {
 
   useEffect(() => {
     const fetchQuotes = async () => {
-      if (!triggerFetch) return;
+      // if (!triggerFetch) return;
 
       try {
         const response = await fetch('https://api.api-ninjas.com/v1/quotes', {
@@ -22,10 +22,13 @@ export default function useQuotes() {
         });
         const data = await response.json();
 
+        if (data.error)
+          throw new Error('Error in fetching quotes:', data.error);
+
         console.log(data);
         setQuotes((prevQuotes) => [...prevQuotes, ...data]);
       } catch (err) {
-        console.error('Error fetching quotes:', err);
+        console.error('Error in fetching quotes:', err);
         setError(err);
       } finally {
         setLoading(false);
