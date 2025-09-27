@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import '../style/Dialog.css';
 
-export const Dialog = () => {
-  const [isOpen, setIsOpen] = useState(false);
+export const Dialog = ({ isOpen, onClose }) => {
   const openDialogRef = useRef(null);
 
   useEffect(() => {
@@ -19,7 +18,7 @@ export const Dialog = () => {
       <dialog ref={openDialogRef}>
         <div className="content">content</div>
         <div className="buttons">
-          <button className="close lato-bold" onClick={() => setIsOpen(false)}>
+          <button className="close lato-bold" onClick={onClose}>
             Close
           </button>
           <button className="accept lato-bold">Accept</button>

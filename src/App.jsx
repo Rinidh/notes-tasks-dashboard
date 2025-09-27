@@ -13,6 +13,7 @@ const App = () => {
   const [tasks, setTasks] = useState([
     { id: 2, type: 'task', content: 'This is a sample task.' },
   ]);
+  const [isOpen, setIsOpen] = useState(false);
 
   const { error, quotes, loading, setTriggerFetch } = useQuotes();
 
@@ -20,11 +21,16 @@ const App = () => {
     <div>
       <header>
         <h1 className="heading">Notes & Tasks Dashboard</h1>
-        <Create />
+        <Create
+          onQuoteFetch={() => {
+            setIsOpen(true);
+            setTriggerFetch(true);
+          }}
+        />
       </header>
       <main>
         <CardsGrid notes={notes} tasks={tasks} />
-        <Dialog />
+        <Dialog isOpen={isOpen} onClose={() => setIsOpen(false)} />
       </main>
     </div>
   );
