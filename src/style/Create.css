@@ -16,17 +16,7 @@
   padding: 1rem 1.5rem;
 }
 
-.buttons-container button:nth-child(1) {
-  background-color: var(--brand-900);
-  color: var(--brand-500);
-  transition: all 150ms ease-in;
-  &:hover {
-    background-color: var(--brand-500);
-    color: var(--brand-900);
-  }
-}
-
-.buttons-container button:nth-child(2) {
+.buttons-container .new-note-btn {
   background-color: var(--brand-500);
   color: var(--brand-900);
   transition: all 150ms ease-in;

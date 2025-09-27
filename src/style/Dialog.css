@@ -98,3 +98,13 @@ dialog button {
 dialog button:hover {
   background-color: var(--brand-600);
 }
+
+.random-quote-btn {
+  background-color: var(--brand-900);
+  color: var(--brand-500);
+  transition: all 150ms ease-in;
+  &:hover {
+    background-color: var(--brand-500);
+    color: var(--brand-900);
+  }
+}

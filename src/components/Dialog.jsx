@@ -1,14 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import '../style/Dialog.css';
 
-export const Dialog = ({
-  quotes,
-  isOpen,
-  onOpen,
-  onClose,
-  loading,
-  onNextQuote,
-}) => {
+export const Dialog = ({ quotes, loading, onNextQuote }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const [previousCount, setPreviousCount] = useState(0);
   const dialogRef = useRef(null);
 
@@ -25,16 +20,15 @@ export const Dialog = ({
       dialog.showModal();
     }
   }, [isOpen]);
-  console.log(loading);
 
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
 
     const handleOutsideClick = (e) => {
-      if (e.target === dialog) onClose();
+      if (e.target === dialog) setIsOpen(false);
     };
-    const handleDialogClose = (e) => onClose();
+    const handleDialogClose = () => setIsOpen(false);
 
     document.addEventListener('click', handleOutsideClick);
     dialog.addEventListener('close', handleDialogClose);
@@ -46,8 +40,9 @@ export const Dialog = ({
   }, []);
 
   const handleOpen = () => {
-    onOpen();
+    setIsOpen(true);
     setPreviousCount(0);
+    onNextQuote();
   };
   const handleNext = () => {
     if (currentQuoteIndex === latestQuoteIndex) {
@@ -63,7 +58,9 @@ export const Dialog = ({
 
   return (
     <>
-      <button onClick={handleOpen}>Open dialog</button>
+      <button onClick={handleOpen} className="random-quote-btn">
+        Random Quote
+      </button>
       <dialog ref={dialogRef}>
         <div className="content">
           <h2>Random Quote</h2>
@@ -79,7 +76,7 @@ export const Dialog = ({
           <p className="author">{quotes[currentQuoteIndex]?.author}</p>
         </div>
         <div className="buttons">
-          <button className="close lato-bold" onClick={onClose}>
+          <button className="close lato-bold" onClick={() => setIsOpen(false)}>
             Close
           </button>
           <button className="accept lato-bold">Accept</button>
