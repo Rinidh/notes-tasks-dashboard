@@ -23,12 +23,25 @@ const App = () => {
       ...notes,
     ]);
   };
+  const handleCreateBlankNoteTask = (newNoteTask) => {
+    setNotes((notes) => [
+      {
+        id: notes.length + 1,
+        type: newNoteTask.type,
+        content: newNoteTask.content,
+      },
+      ...notes,
+    ]);
+  };
 
   return (
     <div>
       <header>
         <h1 className="heading">Notes & Tasks Dashboard</h1>
-        <Create onCreateQuoteNote={handleCreateQuoteNote} />
+        <Create
+          onCreateQuoteNote={handleCreateQuoteNote}
+          onCreateBlankNoteTask={handleCreateBlankNoteTask}
+        />
       </header>
       <main>
         <CardsGrid notes={notes} tasks={tasks} />

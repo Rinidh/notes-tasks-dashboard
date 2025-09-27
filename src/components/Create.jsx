@@ -2,20 +2,21 @@ import React from 'react';
 import '../style/Create.css';
 import '../style/fonts.css';
 import useQuotes from '../hooks/useQuotes';
-import { Dialog } from './Dialog';
+import { QuoteDialog } from './QuoteDialog';
+import { CreateDialog } from './CreateDialog';
 
-export const Create = ({ onCreateQuoteNote }) => {
+export const Create = ({ onCreateQuoteNote, onCreateBlankNoteTask }) => {
   const { error, quotes, loading, setTriggerFetch } = useQuotes();
 
   return (
     <div className="buttons-container">
-      <Dialog
+      <QuoteDialog
         quotes={quotes}
         loading={loading}
         onNextQuote={() => setTriggerFetch(true)}
         onCreateQuoteNote={onCreateQuoteNote}
       />
-      <button className="new-note-btn lato-black">New Note/Task</button>
+      <CreateDialog onCreate={onCreateBlankNoteTask} />
       <hr />
     </div>
   );
