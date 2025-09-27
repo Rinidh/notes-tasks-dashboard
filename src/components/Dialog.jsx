@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import '../style/Dialog.css';
 
-export const Dialog = ({ quotes, loading, onNextQuote }) => {
+export const Dialog = ({ quotes, loading, onNextQuote, onCreateQuoteNote }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const [previousCount, setPreviousCount] = useState(0);
@@ -55,6 +55,10 @@ export const Dialog = ({ quotes, loading, onNextQuote }) => {
   const handlePrevious = () => {
     setPreviousCount((c) => (currentQuoteIndex > 0 ? c + 1 : c)); // prevent stepping back more than there are items in the array
   };
+  const handleAccept = () => {
+    onCreateQuoteNote(quotes[currentQuoteIndex]);
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -79,7 +83,9 @@ export const Dialog = ({ quotes, loading, onNextQuote }) => {
           <button className="close lato-bold" onClick={() => setIsOpen(false)}>
             Close
           </button>
-          <button className="accept lato-bold">Accept</button>
+          <button className="accept lato-bold" onClick={handleAccept}>
+            Accept
+          </button>
         </div>
       </dialog>
     </>

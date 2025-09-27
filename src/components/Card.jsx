@@ -1,6 +1,13 @@
 import React from 'react';
 import '../style/Card.css';
 
-export const Card = ({ type, children }) => {
-  return <div className={`card ${type}`}>{children}</div>;
+export const Card = ({ infoObj }) => {
+  return (
+    <div className={`card ${infoObj.type}`}>
+      {infoObj.author ? <em>{infoObj.content}</em> : infoObj.content}
+      <br />
+      <br />
+      <i>{infoObj.author}</i>
+    </div>
+  );
 };

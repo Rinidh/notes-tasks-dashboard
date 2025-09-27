@@ -4,7 +4,7 @@ import '../style/fonts.css';
 import useQuotes from '../hooks/useQuotes';
 import { Dialog } from './Dialog';
 
-export const Create = () => {
+export const Create = ({ onCreateQuoteNote }) => {
   const { error, quotes, loading, setTriggerFetch } = useQuotes();
 
   return (
@@ -13,6 +13,7 @@ export const Create = () => {
         quotes={quotes}
         loading={loading}
         onNextQuote={() => setTriggerFetch(true)}
+        onCreateQuoteNote={onCreateQuoteNote}
       />
       <button className="new-note-btn lato-black">New Note/Task</button>
       <hr />

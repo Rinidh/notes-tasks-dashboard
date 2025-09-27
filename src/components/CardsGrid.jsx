@@ -8,9 +8,7 @@ export const CardsGrid = ({ notes, tasks }) => {
   return (
     <div className="cards-grid">
       {cards.map((card) => (
-        <Card key={card.id} type={card.type}>
-          {card.content}
-        </Card>
+        <Card key={card.id} infoObj={card} />
       ))}
     </div>
   );
