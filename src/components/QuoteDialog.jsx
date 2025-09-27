@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import '../style/Dialog.css';
+import '../style/QuoteDialog.css';
 
-export const Dialog = ({ quotes, loading, onNextQuote, onCreateQuoteNote }) => {
+export const QuoteDialog = ({
+  quotes,
+  loading,
+  onNextQuote,
+  onCreateQuoteNote,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const [previousCount, setPreviousCount] = useState(0);

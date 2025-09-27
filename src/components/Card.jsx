@@ -3,7 +3,7 @@ import '../style/Card.css';
 
 export const Card = ({ infoObj }) => {
   return (
-    <div className={`card ${infoObj.type}`}>
+    <div className={`card ${infoObj.type}`} contentEditable="true">
       {infoObj.author ? <em>{infoObj.content}</em> : infoObj.content}
       <br />
       <br />
