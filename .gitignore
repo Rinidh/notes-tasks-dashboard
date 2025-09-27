@@ -25,4 +25,5 @@ dist-ssr
 .codesandbox/*
 
 #env vars
-.env
+.env*
+.env.development
