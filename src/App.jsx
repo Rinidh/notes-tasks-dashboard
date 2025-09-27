@@ -30,7 +30,11 @@ const App = () => {
       </header>
       <main>
         <CardsGrid notes={notes} tasks={tasks} />
-        <Dialog isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        <Dialog
+          quotes={quotes}
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+        />
       </main>
     </div>
   );

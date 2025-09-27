@@ -1,5 +1,6 @@
 dialog {
   background-color: var(--brand-900);
+  color: #fff;
   border: 0.3em solid var(--brand-600);
   width: 40vw;
   min-height: 40vh;
@@ -21,8 +22,43 @@ dialog::backdrop {
 }
 
 dialog .content {
+  font-size: 2rem;
   border: 2px solid red;
   flex: 1;
+  text-align: center;
+  padding: 1em;
+}
+
+dialog .content h2 {
+  font-size: 0.6em;
+  margin-bottom: 5ch;
+  color: var(--brand-300);
+}
+
+dialog .quote {
+  position: relative;
+}
+
+dialog .quote::before,
+dialog .quote::after {
+  content: open-quote;
+  position: absolute;
+  top: -1ch;
+  left: 0;
+  font-size: 6rem;
+  color: var(--brand-300);
+}
+
+dialog .quote::after {
+  content: close-quote;
+  right: 0;
+  left: auto;
+}
+
+dialog .author {
+  font-size: 0.7em;
+  font-style: italic;
+  text-align: right;
 }
 
 dialog .buttons {
