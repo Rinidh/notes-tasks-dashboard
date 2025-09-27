@@ -37,6 +37,7 @@ dialog .content h2 {
 
 dialog .quote {
   position: relative;
+  display: flex;
 }
 
 dialog .quote::before,
@@ -53,6 +54,23 @@ dialog .quote::after {
   content: close-quote;
   right: 0;
   left: auto;
+}
+
+dialog .quote p {
+  width: 100%;
+  padding: 0 1ch;
+}
+
+dialog .quote button {
+  background-color: var(--brand-900);
+  border: none;
+  color: var(--brand-500);
+  font-size: 1.5em;
+  border-radius: 0.3em;
+}
+
+dialog .quote button:hover {
+  background-color: #ffffff4f;
 }
 
 dialog .author {

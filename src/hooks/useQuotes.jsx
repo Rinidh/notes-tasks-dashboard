@@ -12,6 +12,7 @@ export default function useQuotes() {
     const fetchQuotes = async () => {
       if (!triggerFetch) return;
 
+      setLoading(true);
       try {
         const response = await fetch('https://api.api-ninjas.com/v1/quotes', {
           method: 'GET',

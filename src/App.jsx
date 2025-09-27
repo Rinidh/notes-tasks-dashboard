@@ -35,6 +35,8 @@ const App = () => {
           isOpen={isOpen}
           onOpen={() => setIsOpen(true)}
           onClose={() => setIsOpen(false)}
+          loading={loading}
+          onNextQuote={() => setTriggerFetch(true)}
         />
       </main>
     </div>
