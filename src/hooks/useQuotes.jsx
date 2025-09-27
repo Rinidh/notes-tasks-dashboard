@@ -10,7 +10,7 @@ export default function useQuotes() {
 
   useEffect(() => {
     const fetchQuotes = async () => {
-      // if (!triggerFetch) return;
+      if (!triggerFetch) return;
 
       try {
         const response = await fetch('https://api.api-ninjas.com/v1/quotes', {
@@ -25,7 +25,7 @@ export default function useQuotes() {
         if (data.error)
           throw new Error('Error in fetching quotes:', data.error);
 
-        console.log(data);
+        // console.log(data);
         setQuotes((prevQuotes) => [...prevQuotes, ...data]);
       } catch (err) {
         console.error('Error in fetching quotes:', err);

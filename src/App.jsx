@@ -33,6 +33,7 @@ const App = () => {
         <Dialog
           quotes={quotes}
           isOpen={isOpen}
+          onOpen={() => setIsOpen(true)}
           onClose={() => setIsOpen(false)}
         />
       </main>
