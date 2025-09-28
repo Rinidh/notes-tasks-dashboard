@@ -1,7 +1,7 @@
 .quote-dialog dialog {
   background-color: var(--brand-900);
   color: #fff;
-  border: 0.3em solid var(--brand-600);
+  border: 0.2rem solid var(--brand-600);
   width: 40vw;
   min-height: 40vh;
   border-radius: 2rem;
@@ -23,7 +23,7 @@
 
 .quote-dialog dialog .content {
   font-size: 2rem;
-  border: 2px solid red;
+  /* border: 2px solid red; */
   flex: 1;
   text-align: center;
   padding: 1em;

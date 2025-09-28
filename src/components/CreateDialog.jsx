@@ -90,7 +90,7 @@ export const CreateDialog = ({ onCreateNoteTask }) => {
             ></textarea>
           </fieldset>
 
-          <button>Create</button>
+          <button className="submit-btn">Create</button>
         </form>
       </dialog>
     </div>

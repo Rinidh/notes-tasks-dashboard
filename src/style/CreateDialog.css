@@ -1,6 +1,6 @@
 .create-dialog dialog {
-  /* border: none; */
-  border: 2px solid red;
+  border: 0.2rem solid var(--brand-600);
+  border-radius: 2rem;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -16,16 +16,16 @@
   backdrop-filter: blur(2px);
 }
 
-.create-dialog .close-btn {
+.create-dialog button.close-btn {
   position: absolute;
   top: 0.15em;
   right: 0.15em;
   font-size: 1.3em;
-  padding: 0.2em 0.5em;
+  padding: 0 0.6em;
 }
 
 .create-dialog form {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   width: 100%;
   height: 100%;
   padding: 4rem 2rem 2rem;
@@ -63,4 +63,8 @@
   border: none;
   resize: vertical;
   outline: none;
+}
+
+.create-dialog .submit-btn {
+  margin-top: 1em;
 }

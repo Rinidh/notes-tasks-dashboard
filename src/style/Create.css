@@ -1,4 +1,4 @@
-.create .buttons-container {
+.create {
   margin-bottom: 3em;
   padding-bottom: 3rem;
   display: flex;
@@ -10,7 +10,7 @@
   border-bottom: 0.3rem solid var(--brand-800);
 }
 
-.create .buttons-container button {
+.create button {
   border-radius: 0.5em;
   border: 0.3rem solid var(--brand-500);
   padding: 1rem 1.5rem;

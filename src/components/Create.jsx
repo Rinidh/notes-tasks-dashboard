@@ -10,16 +10,14 @@ export const Create = ({ onCreateQuoteNote, onCreateNoteTask }) => {
 
   return (
     <div className="create">
-      <div className="buttons-container">
-        <QuoteDialog
-          quotes={quotes}
-          loading={loading}
-          onNextQuote={() => setTriggerFetch(true)}
-          onCreateQuoteNote={onCreateQuoteNote}
-        />
-        <CreateDialog onCreateNoteTask={onCreateNoteTask} />
-        <hr />
-      </div>
+      <QuoteDialog
+        quotes={quotes}
+        loading={loading}
+        onNextQuote={() => setTriggerFetch(true)}
+        onCreateQuoteNote={onCreateQuoteNote}
+      />
+      <CreateDialog onCreateNoteTask={onCreateNoteTask} />
+      <hr />
     </div>
   );
 };
