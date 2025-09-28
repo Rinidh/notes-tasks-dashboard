@@ -18,10 +18,11 @@
 
 .create-dialog button.close-btn {
   position: absolute;
-  top: 0.15em;
-  right: 0.15em;
-  font-size: 1.3em;
-  padding: 0 0.6em;
+  top: 0.1rem;
+  right: 0.1rem;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  margin: 1rem;
 }
 
 .create-dialog form {
@@ -63,6 +64,12 @@
   border: none;
   resize: vertical;
   outline: none;
+}
+
+.create-dialog .buttons {
+  /* border: 2px solid red; */
+  display: flex;
+  justify-content: right;
 }
 
 .create-dialog .submit-btn {

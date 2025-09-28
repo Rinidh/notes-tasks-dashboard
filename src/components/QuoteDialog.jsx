@@ -71,6 +71,12 @@ export const QuoteDialog = ({
         Random Quote
       </button>
       <dialog ref={dialogRef}>
+        <button
+          className="close-btn lato-bold"
+          onClick={() => setIsOpen(false)}
+        >
+          &times;
+        </button>
         <div className="content">
           <h2>Random Quote</h2>
           <div className="quote">
@@ -85,9 +91,6 @@ export const QuoteDialog = ({
           <p className="author">{quotes[currentQuoteIndex]?.author}</p>
         </div>
         <div className="buttons">
-          <button className="close lato-bold" onClick={() => setIsOpen(false)}>
-            Close
-          </button>
           <button className="accept lato-bold" onClick={handleAccept}>
             Accept
           </button>

@@ -41,7 +41,12 @@ export const CreateDialog = ({ onCreateNoteTask }) => {
         New Note/Task
       </button>
       <dialog ref={dialogRef}>
-        <button className="lato-black close-btn">&times;</button>
+        <button
+          className="lato-black close-btn"
+          onClick={() => setIsOpen(false)}
+        >
+          &times;
+        </button>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -90,7 +95,11 @@ export const CreateDialog = ({ onCreateNoteTask }) => {
             ></textarea>
           </fieldset>
 
-          <button className="submit-btn">Create</button>
+          <div className="buttons">
+            <button type="submit" className="submit-btn">
+              Create
+            </button>
+          </div>
         </form>
       </dialog>
     </div>
