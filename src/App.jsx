@@ -1,16 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Create } from './components/Create';
 import { CardsGrid } from './components/CardsGrid';
 import './style/App.css';
 import './style/fonts.css';
 
 const App = () => {
-  const [notes, setNotes] = useState([
-    { id: 'note-1', type: 'note', content: 'This is a sample note/quote.' },
-  ]);
-  const [tasks, setTasks] = useState([
-    { id: 'task-1', type: 'task', content: 'This is a sample task.' },
-  ]);
+  const [notes, setNotes] = useState(
+    () =>
+      JSON.parse(localStorage.getItem('noteTasksDashboard_notes')) || [
+        {
+          id: 'note-1',
+          type: 'note',
+          content: 'This is a sample note/quote.',
+        },
+      ]
+  );
+  const [tasks, setTasks] = useState(
+    () =>
+      JSON.parse(localStorage.getItem('noteTasksDashboard_tasks')) || [
+        {
+          id: 'task-1',
+          type: 'task',
+          content: 'This is a sample task.',
+        },
+      ]
+  );
+
+  useEffect(() => {
+    localStorage.setItem('noteTasksDashboard_notes', JSON.stringify(notes));
+    localStorage.setItem('noteTasksDashboard_tasks', JSON.stringify(tasks));
+  }, [notes, tasks]);
 
   const handleCreateQuoteNote = (quoteObj) => {
     setNotes((notes) => [

@@ -20,7 +20,7 @@ Use a reducer for managing task state (add, toggle complete, delete).
 
 Use context to share global settings (like theme or username).
 
-Use refs for input focus.
+Use refs for input focus. focus directly on textarea on dialog open (user can change note/task manually)
 
 Extract a custom hook for API fetching.
 
@@ -40,3 +40,8 @@ useContext → Provide global settings (like theme mode: light/dark, or user pro
 useRef → Focus the input box after adding a new task.
 
 Custom Hook → useFetchQuote() that handles fetching and error/loading states.
+
+-----------------------
+I left out the ability to edit a note/task because it involves creating new dialogs for each card, which opens for you to edit.
+Prevent using contentEditable as it invloves more direct DOM rendering with .innerText instead of updating state and passing contents as child to Card (see practice-tutorials/react-simple-form/src/editableDiv.jsx)
+If need to add editing ability, rather extract out a <Dialog /> component separately, render it in <App /> and optionally render its contents according to need i.e. fetch a quote or make a new note/task or edit a note/task
