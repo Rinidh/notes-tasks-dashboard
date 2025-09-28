@@ -5,10 +5,10 @@
   color: #fff;
 }
 
-.note {
+.card.note {
   background-color: var(--brand-800);
 }
 
-.task {
+.card.task {
   background-color: var(--brand-700);
 }

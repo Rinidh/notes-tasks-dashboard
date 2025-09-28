@@ -9,15 +9,17 @@ export const Create = ({ onCreateQuoteNote, onCreateNoteTask }) => {
   const { error, quotes, loading, setTriggerFetch } = useQuotes();
 
   return (
-    <div className="buttons-container">
-      <QuoteDialog
-        quotes={quotes}
-        loading={loading}
-        onNextQuote={() => setTriggerFetch(true)}
-        onCreateQuoteNote={onCreateQuoteNote}
-      />
-      <CreateDialog onCreateNoteTask={onCreateNoteTask} />
-      <hr />
+    <div className="create">
+      <div className="buttons-container">
+        <QuoteDialog
+          quotes={quotes}
+          loading={loading}
+          onNextQuote={() => setTriggerFetch(true)}
+          onCreateQuoteNote={onCreateQuoteNote}
+        />
+        <CreateDialog onCreateNoteTask={onCreateNoteTask} />
+        <hr />
+      </div>
     </div>
   );
 };

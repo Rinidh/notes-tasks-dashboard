@@ -1,4 +1,4 @@
-.buttons-container {
+.create .buttons-container {
   margin-bottom: 3em;
   padding-bottom: 3rem;
   display: flex;
@@ -8,4 +8,17 @@
   gap: 2rem;
   font-size: 2rem;
   border-bottom: 0.3rem solid var(--brand-800);
+}
+
+.create .buttons-container button {
+  border-radius: 0.5em;
+  border: 0.3rem solid var(--brand-500);
+  padding: 1rem 1.5rem;
+  background-color: var(--brand-500);
+  color: var(--brand-900);
+  transition: all 150ms ease-in;
+  &:hover {
+    background-color: var(--brand-600);
+    border-color: var(--brand-600);
+  }
 }

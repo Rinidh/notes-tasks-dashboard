@@ -66,7 +66,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="app">
       <header>
         <h1 className="heading">Notes & Tasks Dashboard</h1>
         <Create

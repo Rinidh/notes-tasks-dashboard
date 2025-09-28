@@ -1,4 +1,4 @@
-dialog {
+.quote-dialog dialog {
   background-color: var(--brand-900);
   color: #fff;
   border: 0.3em solid var(--brand-600);
@@ -11,17 +11,17 @@ dialog {
   transform: translate(-50%, -70%);
 }
 
-dialog[open] {
+.quote-dialog dialog[open] {
   display: flex;
   flex-direction: column;
 }
 
-dialog::backdrop {
+.quote-dialog dialog::backdrop {
   background-color: #00000084;
   backdrop-filter: blur(2px);
 }
 
-dialog .content {
+.quote-dialog dialog .content {
   font-size: 2rem;
   border: 2px solid red;
   flex: 1;
@@ -29,19 +29,19 @@ dialog .content {
   padding: 1em;
 }
 
-dialog .content h2 {
+.quote-dialog dialog .content h2 {
   font-size: 0.6em;
   margin-bottom: 5ch;
   color: var(--brand-300);
 }
 
-dialog .quote {
+.quote-dialog dialog .quote {
   position: relative;
   display: flex;
 }
 
-dialog .quote::before,
-dialog .quote::after {
+.quote-dialog dialog .quote::before,
+.quote-dialog dialog .quote::after {
   content: open-quote;
   position: absolute;
   top: -1ch;
@@ -50,7 +50,7 @@ dialog .quote::after {
   color: var(--brand-300);
 }
 
-dialog .quote::after {
+.quote-dialog dialog .quote::after {
   content: close-quote;
   right: 0;
   left: auto;
@@ -61,7 +61,7 @@ dialog .quote p {
   padding: 0 1ch;
 }
 
-dialog .quote button {
+.quote-dialog dialog .quote button {
   background-color: var(--brand-900);
   border: none;
   color: var(--brand-500);
@@ -69,24 +69,24 @@ dialog .quote button {
   border-radius: 0.3em;
 }
 
-dialog .quote button:hover {
+.quote-dialog dialog .quote button:hover {
   background-color: #ffffff4f;
 }
 
-dialog .author {
+.quote-dialog dialog .author {
   font-size: 0.7em;
   font-style: italic;
   text-align: right;
 }
 
-dialog .buttons {
+.quote-dialog dialog .buttons {
   height: 10%;
   padding: 0 1em;
   display: flex;
   justify-content: right;
 }
 
-dialog button {
+.quote-dialog dialog button {
   padding: 0.8em;
   margin: 0.5em;
   background-color: var(--brand-500);
@@ -95,14 +95,14 @@ dialog button {
   transition: all 200ms ease;
 }
 
-dialog button:hover {
+.quote-dialog dialog button:hover {
   background-color: var(--brand-600);
 }
 
-.random-quote-btn {
+.quote-dialog button#random-quote-btn {
+  /* used an id selector for higher specificity to override styles in Create.css */
   background-color: var(--brand-900);
   color: var(--brand-500);
-  transition: all 150ms ease-in;
   &:hover {
     background-color: var(--brand-500);
     color: var(--brand-900);

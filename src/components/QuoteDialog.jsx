@@ -66,8 +66,8 @@ export const QuoteDialog = ({
   };
 
   return (
-    <>
-      <button onClick={handleOpen} className="random-quote-btn">
+    <div className="quote-dialog">
+      <button onClick={handleOpen} id="random-quote-btn">
         Random Quote
       </button>
       <dialog ref={dialogRef}>
@@ -93,6 +93,6 @@ export const QuoteDialog = ({
           </button>
         </div>
       </dialog>
-    </>
+    </div>
   );
 };

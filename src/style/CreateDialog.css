@@ -1,4 +1,4 @@
-dialog {
+.create-dialog dialog {
   /* border: none; */
   border: 2px solid red;
   position: fixed;
@@ -11,12 +11,12 @@ dialog {
   color: #fff;
 }
 
-dialog::backdrop {
+.create-dialog dialog::backdrop {
   background-color: #00000084;
   backdrop-filter: blur(2px);
 }
 
-.close-btn {
+.create-dialog .close-btn {
   position: absolute;
   top: 0.15em;
   right: 0.15em;
@@ -24,36 +24,36 @@ dialog::backdrop {
   padding: 0.2em 0.5em;
 }
 
-form {
+.create-dialog form {
   border: 2px solid red;
   width: 100%;
   height: 100%;
   padding: 4rem 2rem 2rem;
 }
 
-fieldset {
+.create-dialog fieldset {
   border: 2px solid var(--brand-600);
   border-radius: 1em;
   padding: 0.2em;
   margin-top: 1em;
 }
 
-legend {
+.create-dialog legend {
   text-align: center;
   padding: 0.3em;
   color: var(--brand-600);
 }
 
-.type-select {
+.create-dialog .type-select {
   display: flex;
   justify-content: center;
 }
 
-.type-select label:nth-child(1) {
+.create-dialog .type-select label:nth-child(1) {
   margin-right: 2em;
 }
 
-textarea {
+.create-dialog textarea {
   background-color: var(--brand-900);
   color: #fff;
   padding: 1ch;
@@ -63,17 +63,4 @@ textarea {
   border: none;
   resize: vertical;
   outline: none;
-}
-
-.new-note-btn {
-  border-radius: 0.5em;
-  border: 0.3rem solid var(--brand-500);
-  padding: 1rem 1.5rem;
-  background-color: var(--brand-500);
-  color: var(--brand-900);
-  transition: all 150ms ease-in;
-  &:hover {
-    background-color: var(--brand-600);
-    border-color: var(--brand-600);
-  }
 }

@@ -36,11 +36,8 @@ export const CreateDialog = ({ onCreateNoteTask }) => {
   }, []);
 
   return (
-    <div>
-      <button
-        className="lato-bold new-note-btn"
-        onClick={() => setIsOpen(true)}
-      >
+    <div className="create-dialog">
+      <button className="lato-bold" onClick={() => setIsOpen(true)}>
         New Note/Task
       </button>
       <dialog ref={dialogRef}>
