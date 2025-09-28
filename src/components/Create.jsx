@@ -5,7 +5,7 @@ import useQuotes from '../hooks/useQuotes';
 import { QuoteDialog } from './QuoteDialog';
 import { CreateDialog } from './CreateDialog';
 
-export const Create = ({ onCreateQuoteNote, onCreateBlankNoteTask }) => {
+export const Create = ({ onCreateQuoteNote, onCreateNoteTask }) => {
   const { error, quotes, loading, setTriggerFetch } = useQuotes();
 
   return (
@@ -16,7 +16,7 @@ export const Create = ({ onCreateQuoteNote, onCreateBlankNoteTask }) => {
         onNextQuote={() => setTriggerFetch(true)}
         onCreateQuoteNote={onCreateQuoteNote}
       />
-      <CreateDialog onCreate={onCreateBlankNoteTask} />
+      <CreateDialog onCreateNoteTask={onCreateNoteTask} />
       <hr />
     </div>
   );

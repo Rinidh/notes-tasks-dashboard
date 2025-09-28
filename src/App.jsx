@@ -6,16 +6,16 @@ import './style/fonts.css';
 
 const App = () => {
   const [notes, setNotes] = useState([
-    { id: 1, type: 'note', content: 'This is a sample note/quote.' },
+    { id: 'note-1', type: 'note', content: 'This is a sample note/quote.' },
   ]);
   const [tasks, setTasks] = useState([
-    { id: 2, type: 'task', content: 'This is a sample task.' },
+    { id: 'task-1', type: 'task', content: 'This is a sample task.' },
   ]);
 
   const handleCreateQuoteNote = (quoteObj) => {
     setNotes((notes) => [
       {
-        id: notes.length + 1,
+        id: `note-${notes.length + 1}`,
         type: 'note',
         content: quoteObj.quote,
         author: quoteObj.author,
@@ -23,15 +23,27 @@ const App = () => {
       ...notes,
     ]);
   };
-  const handleCreateBlankNoteTask = (newNoteTask) => {
-    setNotes((notes) => [
-      {
-        id: notes.length + 1,
-        type: newNoteTask.type,
-        content: newNoteTask.content,
-      },
-      ...notes,
-    ]);
+  const handleCreateNoteTask = (newNoteTask) => {
+    if (newNoteTask.type === 'task') {
+      setTasks((tasks) => [
+        {
+          id: `task-${tasks.length + 1}`,
+          type: newNoteTask.type,
+          content: newNoteTask.content,
+        },
+        ...tasks,
+      ]);
+    }
+    if (newNoteTask.type === 'note') {
+      setNotes((notes) => [
+        {
+          id: `note-${notes.length + 1}`,
+          type: newNoteTask.type,
+          content: newNoteTask.content,
+        },
+        ...notes,
+      ]);
+    }
   };
 
   return (
@@ -40,7 +52,7 @@ const App = () => {
         <h1 className="heading">Notes & Tasks Dashboard</h1>
         <Create
           onCreateQuoteNote={handleCreateQuoteNote}
-          onCreateBlankNoteTask={handleCreateBlankNoteTask}
+          onCreateNoteTask={handleCreateNoteTask}
         />
       </header>
       <main>
