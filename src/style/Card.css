@@ -28,7 +28,7 @@
   transition: opacity 150ms ease-out;
 }
 
-.card .delete {
+.card .toggle-complete {
   right: 50px;
 }
 

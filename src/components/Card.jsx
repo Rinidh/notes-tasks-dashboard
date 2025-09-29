@@ -1,17 +1,25 @@
 import React from 'react';
 import '../style/Card.css';
 
-export const Card = ({ infoObj }) => {
-  return (
-    <div className={`card ${infoObj.type}`}>
-      {infoObj.author ? <em>{infoObj.content}</em> : infoObj.content}
-      <br />
-      <br />
-      <i>{infoObj.author}</i>
+export const Card = ({ infoObj, onToggleComplete }) => {
+  const { id, type, content, author } = infoObj;
 
-      <div className="toggle-complete" title="toggle complete">
-        ✅
-      </div>
+  return (
+    <div className={`card ${type}`}>
+      {author ? <em>{content}</em> : content}
+      <br />
+      <br />
+      <i>{author && author}</i>
+
+      {type === 'task' && (
+        <div
+          className="toggle-complete"
+          title="toggle complete"
+          onClick={() => onToggleComplete(id)}
+        >
+          ✅
+        </div>
+      )}
       <div className="delete" title="delete">
         ❌
       </div>

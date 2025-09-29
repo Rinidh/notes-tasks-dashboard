@@ -22,6 +22,7 @@ const App = () => {
           id: 'task-1',
           type: 'task',
           content: 'This is a sample task.',
+          done: false,
         },
       ]
   );
@@ -64,6 +65,7 @@ const App = () => {
       ]);
     }
   };
+  const handleToggleComplete = (id) => {};
 
   return (
     <div className="app">
@@ -75,7 +77,11 @@ const App = () => {
         />
       </header>
       <main>
-        <CardsGrid notes={notes} tasks={tasks} />
+        <CardsGrid
+          notes={notes}
+          tasks={tasks}
+          onToggleComplete={handleToggleComplete}
+        />
       </main>
     </div>
   );
