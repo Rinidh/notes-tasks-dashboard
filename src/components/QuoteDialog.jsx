@@ -86,12 +86,17 @@ export const QuoteDialog = ({
             </button>
             <div className="text">
               {error && (
-                <p style={{ color: '#FFA9AA' }}>Error fetching quotes...</p>
+                <p style={{ color: '#FFA9AA', display: 'inline-block' }}>
+                  Error fetching quotes...
+                  <br />
+                  {error}
+                </p>
               )}
-              {loading ? (
-                'Loading...'
-              ) : (
-                <p>{quotes[currentQuoteIndex]?.quote}</p>
+              {loading && <p>Loading...</p>}
+              {quotes[currentQuoteIndex]?.quote && (
+                <p style={{ display: 'inline-block' }}>
+                  {quotes[currentQuoteIndex]?.quote}
+                </p>
               )}
             </div>
 
