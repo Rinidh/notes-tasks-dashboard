@@ -1,8 +1,9 @@
 .card {
   padding: 1em;
   min-height: 30vh;
-  border-radius: 2em;
+  border-radius: 1em;
   color: #fff;
+  position: relative;
 }
 
 .card.note {
@@ -11,4 +12,27 @@
 
 .card.task {
   background-color: var(--brand-700);
+}
+
+.card .toggle-complete,
+.card .delete {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 0.1em;
+  border-radius: 0.2rem;
+  background-color: #000;
+  font-size: 1.3em;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 150ms ease-out;
+}
+
+.card .delete {
+  right: 50px;
+}
+
+.card:hover .toggle-complete,
+.card:hover .delete {
+  opacity: 1;
 }

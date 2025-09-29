@@ -8,6 +8,13 @@ export const Card = ({ infoObj }) => {
       <br />
       <br />
       <i>{infoObj.author}</i>
+
+      <div className="toggle-complete" title="toggle complete">
+        ✅
+      </div>
+      <div className="delete" title="delete">
+        ❌
+      </div>
     </div>
   );
 };
