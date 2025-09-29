@@ -6,6 +6,7 @@ export const QuoteDialog = ({
   loading,
   onNextQuote,
   onCreateQuoteNote,
+  error,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -83,7 +84,22 @@ export const QuoteDialog = ({
             <button className="lato-black" onClick={handlePrevious}>
               &lt;
             </button>
-            <p>{loading ? 'Loading...' : quotes[currentQuoteIndex]?.quote}</p>
+            <div className="text">
+              {error && (
+                <p style={{ color: '#FFA9AA', display: 'inline-block' }}>
+                  Error fetching quotes...
+                  <br />
+                  {error}
+                </p>
+              )}
+              {loading && <p>Loading...</p>}
+              {quotes[currentQuoteIndex]?.quote && (
+                <p style={{ display: 'inline-block' }}>
+                  {quotes[currentQuoteIndex]?.quote}
+                </p>
+              )}
+            </div>
+
             <button className="lato-black" onClick={handleNext}>
               &gt;
             </button>

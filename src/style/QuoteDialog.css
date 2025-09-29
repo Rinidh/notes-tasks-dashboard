@@ -81,6 +81,13 @@ dialog .quote p {
   background-color: #ffffff4f;
 }
 
+.quote-dialog .text {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .quote-dialog dialog .author {
   font-size: 0.7em;
   font-style: italic;
