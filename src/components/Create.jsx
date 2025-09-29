@@ -15,6 +15,7 @@ export const Create = ({ onCreateQuoteNote, onCreateNoteTask }) => {
         loading={loading}
         onNextQuote={() => setTriggerFetch(true)}
         onCreateQuoteNote={onCreateQuoteNote}
+        error={error}
       />
       <CreateDialog onCreateNoteTask={onCreateNoteTask} />
       <hr />
