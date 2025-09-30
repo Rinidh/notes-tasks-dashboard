@@ -2,14 +2,16 @@ import React from 'react';
 import '../style/Card.css';
 
 export const Card = ({ infoObj, onToggleComplete }) => {
-  const { id, type, content, author } = infoObj;
+  const { id, type, content, author, done = false } = infoObj;
+
+  console.log(`card ${type} ${done ? 'is-completed' : ''}`);
 
   return (
-    <div className={`card ${type}`}>
+    <div className={`card ${type} ${done ? 'is-completed' : ''}`}>
       {author ? <em>{content}</em> : content}
       <br />
       <br />
-      <i>{author && author}</i>
+      <em>{author && author}</em>
 
       {type === 'task' && (
         <div

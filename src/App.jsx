@@ -65,7 +65,11 @@ const App = () => {
       ]);
     }
   };
-  const handleToggleComplete = (id) => {};
+  const handleToggleComplete = (id) => {
+    setTasks((tasks) =>
+      tasks.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
+    );
+  };
 
   return (
     <div className="app">
