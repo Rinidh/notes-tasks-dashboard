@@ -4,8 +4,6 @@ import '../style/Card.css';
 export const Card = ({ infoObj, onToggleComplete, onDelete }) => {
   const { id, type, content, author, done = false } = infoObj;
 
-  console.log(`card ${type} ${done ? 'is-completed' : ''}`);
-
   return (
     <div className={`card ${type} ${done ? 'is-completed' : ''}`}>
       {author ? <em>{content}</em> : content}

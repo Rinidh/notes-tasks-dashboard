@@ -1,11 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import { Create } from './components/Create';
 import { CardsGrid } from './components/CardsGrid';
 import './style/App.css';
 import './style/fonts.css';
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'create-quote-note': {
+      console.log(state, action);
+      return [
+        {
+          id: state.length + 1,
+          type: 'note',
+          content: action.quoteObj.quote,
+          author: action.quoteObj.author,
+        },
+        ...state,
+      ];
+    }
+  }
+};
+
 const App = () => {
-  const [notes, setNotes] = useState(
+  const [notes, dispatch] = useReducer(
+    reducer,
+    null,
     () =>
       JSON.parse(localStorage.getItem('noteTasksDashboard_notes')) || [
         {
@@ -15,6 +34,17 @@ const App = () => {
         },
       ]
   );
+
+  // const [notes, setNotes] = useState(
+  //   () =>
+  //     JSON.parse(localStorage.getItem('noteTasksDashboard_notes')) || [
+  //       {
+  //         id: 'note-1',
+  //         type: 'note',
+  //         content: 'This is a sample note/quote.',
+  //       },
+  //     ]
+  // );
   const [tasks, setTasks] = useState(
     () =>
       JSON.parse(localStorage.getItem('noteTasksDashboard_tasks')) || [
@@ -33,63 +63,67 @@ const App = () => {
   }, [notes, tasks]);
 
   const handleCreateQuoteNote = (quoteObj) => {
-    setNotes((notes) => [
-      {
-        id: `note-${notes.length + 1}`,
-        type: 'note',
-        content: quoteObj.quote,
-        author: quoteObj.author,
-      },
-      ...notes,
-    ]);
+    dispatch({
+      type: 'create-quote-note',
+      quoteObj: quoteObj,
+    });
+    // setNotes((notes) => [
+    //   {
+    //     id: `note-${notes.length + 1}`,
+    //     type: 'note',
+    //     content: quoteObj.quote,
+    //     author: quoteObj.author,
+    //   },
+    //   ...notes,
+    // ]);
   };
-  const handleCreateNoteTask = (newNoteTask) => {
-    const { type, content } = newNoteTask;
-    const setState =
-      type === 'note' ? setNotes : type === 'task' ? setTasks : null;
+  // const handleCreateNoteTask = (newNoteTask) => {
+  //   const { type, content } = newNoteTask;
+  //   const setState =
+  //     type === 'note' ? setNotes : type === 'task' ? setTasks : null;
 
-    setState((items) => [
-      {
-        id: `${items[0].id.split('-')[0]}-${items.length + 1}`,
-        type,
-        content,
-        done: false,
-      },
-      ...items,
-    ]);
+  //   setState((items) => [
+  //     {
+  //       id: `${items[0].id.split('-')[0]}-${items.length + 1}`,
+  //       type,
+  //       content,
+  //       done: false,
+  //     },
+  //     ...items,
+  //   ]);
 
-    // if (newNoteTask.type === 'task') {
-    //   setTasks((tasks) => [
-    //     {
-    //       id: `task-${tasks.length + 1}`,
-    //       type: newNoteTask.type,
-    //       content: newNoteTask.content,
-    //     },
-    //     ...tasks,
-    //   ]);
-    // }
-    // if (newNoteTask.type === 'note') {
-    //   setNotes((notes) => [
-    //     {
-    //       id: `note-${notes.length + 1}`,
-    //       type: newNoteTask.type,
-    //       content: newNoteTask.content,
-    //     },
-    //     ...notes,
-    //   ]);
-    // }
-  };
-  const handleToggleComplete = (id) => {
-    setTasks((tasks) =>
-      tasks.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
-    );
-  };
-  const handleDelete = (id, type) => {
-    const setState =
-      type === 'note' ? setNotes : type === 'task' ? setTasks : null;
+  //   // if (newNoteTask.type === 'task') {
+  //   //   setTasks((tasks) => [
+  //   //     {
+  //   //       id: `task-${tasks.length + 1}`,
+  //   //       type: newNoteTask.type,
+  //   //       content: newNoteTask.content,
+  //   //     },
+  //   //     ...tasks,
+  //   //   ]);
+  //   // }
+  //   // if (newNoteTask.type === 'note') {
+  //   //   setNotes((notes) => [
+  //   //     {
+  //   //       id: `note-${notes.length + 1}`,
+  //   //       type: newNoteTask.type,
+  //   //       content: newNoteTask.content,
+  //   //     },
+  //   //     ...notes,
+  //   //   ]);
+  //   // }
+  // };
+  // const handleToggleComplete = (id) => {
+  //   setTasks((tasks) =>
+  //     tasks.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
+  //   );
+  // };
+  // const handleDelete = (id, type) => {
+  //   const setState =
+  //     type === 'note' ? setNotes : type === 'task' ? setTasks : null;
 
-    setState((items) => items.filter((i) => i.id !== id));
-  };
+  //   setState((items) => items.filter((i) => i.id !== id));
+  // };
 
   return (
     <div className="app">
@@ -97,15 +131,15 @@ const App = () => {
         <h1 className="heading">Notes & Tasks Dashboard</h1>
         <Create
           onCreateQuoteNote={handleCreateQuoteNote}
-          onCreateNoteTask={handleCreateNoteTask}
+          // onCreateNoteTask={handleCreateNoteTask}
         />
       </header>
       <main>
         <CardsGrid
           notes={notes}
           tasks={tasks}
-          onToggleComplete={handleToggleComplete}
-          onDelete={handleDelete}
+          // onToggleComplete={handleToggleComplete}
+          // onDelete={handleDelete}
         />
       </main>
     </div>

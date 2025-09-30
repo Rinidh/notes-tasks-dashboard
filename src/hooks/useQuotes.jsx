@@ -19,7 +19,7 @@ export default function useQuotes() {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            // 'X-Api-Key': apiKey,
+            'X-Api-Key': apiKey,
           },
         });
         const data = await response.json();
