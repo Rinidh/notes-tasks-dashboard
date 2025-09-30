@@ -1,7 +1,7 @@
 import React from 'react';
 import '../style/Card.css';
 
-export const Card = ({ infoObj, onToggleComplete }) => {
+export const Card = ({ infoObj, onToggleComplete, onDelete }) => {
   const { id, type, content, author, done = false } = infoObj;
 
   console.log(`card ${type} ${done ? 'is-completed' : ''}`);
@@ -22,7 +22,7 @@ export const Card = ({ infoObj, onToggleComplete }) => {
           ✅
         </div>
       )}
-      <div className="delete" title="delete">
+      <div className="delete" title="delete" onClick={() => onDelete(id, type)}>
         ❌
       </div>
     </div>

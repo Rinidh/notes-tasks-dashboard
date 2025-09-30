@@ -44,31 +44,51 @@ const App = () => {
     ]);
   };
   const handleCreateNoteTask = (newNoteTask) => {
-    if (newNoteTask.type === 'task') {
-      setTasks((tasks) => [
-        {
-          id: `task-${tasks.length + 1}`,
-          type: newNoteTask.type,
-          content: newNoteTask.content,
-        },
-        ...tasks,
-      ]);
-    }
-    if (newNoteTask.type === 'note') {
-      setNotes((notes) => [
-        {
-          id: `note-${notes.length + 1}`,
-          type: newNoteTask.type,
-          content: newNoteTask.content,
-        },
-        ...notes,
-      ]);
-    }
+    const { type, content } = newNoteTask;
+    const setState =
+      type === 'note' ? setNotes : type === 'task' ? setTasks : null;
+
+    setState((items) => [
+      {
+        id: `${items[0].id.split('-')[0]}-${items.length + 1}`,
+        type,
+        content,
+        done: false,
+      },
+      ...items,
+    ]);
+
+    // if (newNoteTask.type === 'task') {
+    //   setTasks((tasks) => [
+    //     {
+    //       id: `task-${tasks.length + 1}`,
+    //       type: newNoteTask.type,
+    //       content: newNoteTask.content,
+    //     },
+    //     ...tasks,
+    //   ]);
+    // }
+    // if (newNoteTask.type === 'note') {
+    //   setNotes((notes) => [
+    //     {
+    //       id: `note-${notes.length + 1}`,
+    //       type: newNoteTask.type,
+    //       content: newNoteTask.content,
+    //     },
+    //     ...notes,
+    //   ]);
+    // }
   };
   const handleToggleComplete = (id) => {
     setTasks((tasks) =>
       tasks.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
     );
+  };
+  const handleDelete = (id, type) => {
+    const setState =
+      type === 'note' ? setNotes : type === 'task' ? setTasks : null;
+
+    setState((items) => items.filter((i) => i.id !== id));
   };
 
   return (
@@ -85,6 +105,7 @@ const App = () => {
           notes={notes}
           tasks={tasks}
           onToggleComplete={handleToggleComplete}
+          onDelete={handleDelete}
         />
       </main>
     </div>
