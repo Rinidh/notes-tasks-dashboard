@@ -3,107 +3,12 @@ import { Create } from './components/Create';
 import { CardsGrid } from './components/CardsGrid';
 import './style/App.css';
 import './style/fonts.css';
-
-const notesReducer = (state, action) => {
-  switch (action.type) {
-    case 'create-quote-note': {
-      return [
-        {
-          id: state.length + 1,
-          type: 'note',
-          content: action.quoteObj.quote,
-          author: action.quoteObj.author,
-        },
-        ...state,
-      ];
-    }
-    case 'create-new-note': {
-      return [
-        {
-          id: 'note-' + state.length + 1,
-          type: action.newNoteTask.type,
-          content: action.newNoteTask.content,
-        },
-        ...state,
-      ];
-    }
-    case 'delete': {
-      return state.filter((note) => note.id !== action.id);
-    }
-  }
-};
-
-const tasksReducer = (state, action) => {
-  switch (action.type) {
-    case 'create-new-task': {
-      return [
-        {
-          id: 'task-' + state.length + 1,
-          type: action.newNoteTask.type,
-          content: action.newNoteTask.content,
-          done: false,
-        },
-        ...state,
-      ];
-    }
-    case 'toggle-complete': {
-      return state.map((t) =>
-        t.id === action.id ? { ...t, done: !t.done } : t
-      );
-    }
-    case 'delete': {
-      return state.filter((task) => task.id !== action.id);
-    }
-  }
-};
+import { useNotes } from './hooks/useNotes';
+import { useTasks } from './hooks/useTasks';
 
 const App = () => {
-  const [notes, dispatchNotes] = useReducer(
-    notesReducer,
-    null,
-    () =>
-      JSON.parse(localStorage.getItem('noteTasksDashboard_notes')) || [
-        {
-          id: 'note-1',
-          type: 'note',
-          content: 'This is a sample note/quote.',
-        },
-      ]
-  );
-  // const [notes, setNotes] = useState(
-  //   () =>
-  //     JSON.parse(localStorage.getItem('noteTasksDashboard_notes')) || [
-  //       {
-  //         id: 'note-1',
-  //         type: 'note',
-  //         content: 'This is a sample note/quote.',
-  //       },
-  //     ]
-  // );
-
-  const [tasks, dispatchTasks] = useReducer(tasksReducer, null, () => {
-    return (
-      JSON.parse(localStorage.getItem('noteTasksDashboard_tasks')) || [
-        {
-          id: 'task-1',
-          type: 'task',
-          content: 'This is a sample task.',
-          done: false,
-        },
-      ]
-    );
-  });
-  // const [tasks, setTasks] = useState(
-  //   () =>
-  //     JSON.parse(localStorage.getItem('noteTasksDashboard_tasks')) || [
-  //       {
-  //         id: 'task-1',
-  //         type: 'task',
-  //         content: 'This is a sample task.',
-  //         done: false,
-  //       },
-  //     ]
-  // );
+  const { notes, dispatchNotes } = useNotes();
+  const { tasks, dispatchTasks } = useTasks();
 
   useEffect(() => {
     localStorage.setItem('noteTasksDashboard_notes', JSON.stringify(notes));
