@@ -4,7 +4,7 @@ import { CardsGrid } from './components/CardsGrid';
 import './style/App.css';
 import './style/fonts.css';
 
-const reducer = (state, action) => {
+const notesReducer = (state, action) => {
   switch (action.type) {
     case 'create-quote-note': {
       return [
@@ -30,9 +30,25 @@ const reducer = (state, action) => {
   }
 };
 
+const tasksReducer = (state, action) => {
+  switch (action.type) {
+    case 'create-new-task': {
+      return [
+        {
+          id: 'task-' + state.length + 1,
+          type: action.newNoteTask.type,
+          content: action.newNoteTask.content,
+          done: false,
+        },
+        ...state,
+      ];
+    }
+  }
+};
+
 const App = () => {
-  const [notes, dispatch] = useReducer(
-    reducer,
+  const [notes, dispatchNotes] = useReducer(
+    notesReducer,
     null,
     () =>
       JSON.parse(localStorage.getItem('noteTasksDashboard_notes')) || [
@@ -54,8 +70,8 @@ const App = () => {
   //     ]
   // );
 
-  const [tasks, setTasks] = useState(
-    () =>
+  const [tasks, dispatchTasks] = useReducer(tasksReducer, null, () => {
+    return (
       JSON.parse(localStorage.getItem('noteTasksDashboard_tasks')) || [
         {
           id: 'task-1',
@@ -64,7 +80,19 @@ const App = () => {
           done: false,
         },
       ]
-  );
+    );
+  });
+  // const [tasks, setTasks] = useState(
+  //   () =>
+  //     JSON.parse(localStorage.getItem('noteTasksDashboard_tasks')) || [
+  //       {
+  //         id: 'task-1',
+  //         type: 'task',
+  //         content: 'This is a sample task.',
+  //         done: false,
+  //       },
+  //     ]
+  // );
 
   useEffect(() => {
     localStorage.setItem('noteTasksDashboard_notes', JSON.stringify(notes));
@@ -72,7 +100,7 @@ const App = () => {
   }, [notes, tasks]);
 
   const handleCreateQuoteNote = (quoteObj) => {
-    dispatch({
+    dispatchNotes({
       type: 'create-quote-note',
       quoteObj: quoteObj,
     });
@@ -88,8 +116,14 @@ const App = () => {
   };
   const handleCreateNoteTask = (newNoteTask) => {
     if (newNoteTask.type === 'note') {
-      dispatch({
+      dispatchNotes({
         type: 'create-new-note',
+        newNoteTask,
+      });
+    }
+    if (newNoteTask.type === 'task') {
+      dispatchTasks({
+        type: 'create-new-task',
         newNoteTask,
       });
     }
