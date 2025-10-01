@@ -10,11 +10,6 @@ const App = () => {
   const { notes, dispatchNotes } = useNotes();
   const { tasks, dispatchTasks } = useTasks();
 
-  useEffect(() => {
-    localStorage.setItem('noteTasksDashboard_notes', JSON.stringify(notes));
-    localStorage.setItem('noteTasksDashboard_tasks', JSON.stringify(tasks));
-  }, [notes, tasks]);
-
   const handleCreateQuoteNote = (quoteObj) => {
     dispatchNotes({
       type: 'create-quote-note',

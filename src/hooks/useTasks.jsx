@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 
 const tasksReducer = (state, action) => {
   switch (action.type) {
@@ -37,6 +37,12 @@ export function useTasks() {
       ]
     );
   });
+
+  useEffect(
+    () =>
+      localStorage.setItem('noteTasksDashboard_tasks', JSON.stringify(tasks)),
+    [tasks]
+  );
 
   return { tasks, dispatchTasks };
 }

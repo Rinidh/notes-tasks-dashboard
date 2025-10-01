@@ -5,24 +5,32 @@ export const Card = ({ infoObj, onToggleComplete, onDelete }) => {
   const { id, type, content, author, done = false } = infoObj;
 
   return (
-    <div className={`card ${type} ${done ? 'is-completed' : ''}`}>
+    <article
+      className={`card ${type} ${done ? 'is-completed' : ''}`}
+      aria-label={`${type} card`}
+    >
       {author ? <em>{content}</em> : content}
       <br />
       <br />
       <em>{author && author}</em>
 
       {type === 'task' && (
-        <div
+        <button
           className="toggle-complete"
           title="toggle complete"
           onClick={() => onToggleComplete(id)}
+          aria-pressed={done}
         >
           ✅
-        </div>
+        </button>
       )}
-      <div className="delete" title="delete" onClick={() => onDelete(id, type)}>
+      <button
+        className="delete"
+        title="delete"
+        onClick={() => onDelete(id, type)}
+      >
         ❌
-      </div>
-    </div>
+      </button>
+    </article>
   );
 };

@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 
 const notesReducer = (state, action) => {
   switch (action.type) {
@@ -41,6 +41,12 @@ export function useNotes() {
           content: 'This is a sample note/quote.',
         },
       ]
+  );
+
+  useEffect(
+    () =>
+      localStorage.setItem('noteTasksDashboard_notes', JSON.stringify(notes)),
+    [notes]
   );
 
   return { notes, dispatchNotes };
