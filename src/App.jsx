@@ -43,6 +43,11 @@ const tasksReducer = (state, action) => {
         ...state,
       ];
     }
+    case 'toggle-complete': {
+      return state.map((t) =>
+        t.id === action.id ? { ...t, done: !t.done } : t
+      );
+    }
   }
 };
 
@@ -165,17 +170,21 @@ const App = () => {
     //   ]);
     // }
   };
-  // const handleToggleComplete = (id) => {
-  //   setTasks((tasks) =>
-  //     tasks.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
-  //   );
-  // };
-  // const handleDelete = (id, type) => {
-  //   const setState =
-  //     type === 'note' ? setNotes : type === 'task' ? setTasks : null;
+  const handleToggleComplete = (id) => {
+    dispatchTasks({
+      type: 'toggle-complete',
+      id,
+    });
+    // setTasks((tasks) =>
+    //   tasks.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
+    // );
+  };
+  const handleDelete = (id, type) => {
+    const setState =
+      type === 'note' ? setNotes : type === 'task' ? setTasks : null;
 
-  //   setState((items) => items.filter((i) => i.id !== id));
-  // };
+    setState((items) => items.filter((i) => i.id !== id));
+  };
 
   return (
     <div className="app">
@@ -190,7 +199,7 @@ const App = () => {
         <CardsGrid
           notes={notes}
           tasks={tasks}
-          // onToggleComplete={handleToggleComplete}
+          onToggleComplete={handleToggleComplete}
           // onDelete={handleDelete}
         />
       </main>
