@@ -7,13 +7,22 @@ import './style/fonts.css';
 const reducer = (state, action) => {
   switch (action.type) {
     case 'create-quote-note': {
-      console.log(state, action);
       return [
         {
           id: state.length + 1,
           type: 'note',
           content: action.quoteObj.quote,
           author: action.quoteObj.author,
+        },
+        ...state,
+      ];
+    }
+    case 'create-new-note': {
+      return [
+        {
+          id: 'note-' + state.length + 1,
+          type: action.newNoteTask.type,
+          content: action.newNoteTask.content,
         },
         ...state,
       ];
@@ -34,7 +43,6 @@ const App = () => {
         },
       ]
   );
-
   // const [notes, setNotes] = useState(
   //   () =>
   //     JSON.parse(localStorage.getItem('noteTasksDashboard_notes')) || [
@@ -45,6 +53,7 @@ const App = () => {
   //       },
   //     ]
   // );
+
   const [tasks, setTasks] = useState(
     () =>
       JSON.parse(localStorage.getItem('noteTasksDashboard_tasks')) || [
@@ -77,42 +86,51 @@ const App = () => {
     //   ...notes,
     // ]);
   };
-  // const handleCreateNoteTask = (newNoteTask) => {
-  //   const { type, content } = newNoteTask;
-  //   const setState =
-  //     type === 'note' ? setNotes : type === 'task' ? setTasks : null;
+  const handleCreateNoteTask = (newNoteTask) => {
+    if (newNoteTask.type === 'note') {
+      dispatch({
+        type: 'create-new-note',
+        newNoteTask,
+      });
+    }
 
-  //   setState((items) => [
-  //     {
-  //       id: `${items[0].id.split('-')[0]}-${items.length + 1}`,
-  //       type,
-  //       content,
-  //       done: false,
-  //     },
-  //     ...items,
-  //   ]);
+    // Using setState() in concise way
+    // const { type, content } = newNoteTask;
+    // const setState =
+    //   type === 'note' ? setNotes : type === 'task' ? setTasks : null;
 
-  //   // if (newNoteTask.type === 'task') {
-  //   //   setTasks((tasks) => [
-  //   //     {
-  //   //       id: `task-${tasks.length + 1}`,
-  //   //       type: newNoteTask.type,
-  //   //       content: newNoteTask.content,
-  //   //     },
-  //   //     ...tasks,
-  //   //   ]);
-  //   // }
-  //   // if (newNoteTask.type === 'note') {
-  //   //   setNotes((notes) => [
-  //   //     {
-  //   //       id: `note-${notes.length + 1}`,
-  //   //       type: newNoteTask.type,
-  //   //       content: newNoteTask.content,
-  //   //     },
-  //   //     ...notes,
-  //   //   ]);
-  //   // }
-  // };
+    // setState((items) => [
+    //   {
+    //     id: `${items[0].id.split('-')[0]}-${items.length + 1}`,
+    //     type,
+    //     content,
+    //     done: false,
+    //   },
+    //   ...items,
+    // ]);
+
+    // Using setState() in verbose way
+    // if (newNoteTask.type === 'task') {
+    //   setTasks((tasks) => [
+    //     {
+    //       id: `task-${tasks.length + 1}`,
+    //       type: newNoteTask.type,
+    //       content: newNoteTask.content,
+    //     },
+    //     ...tasks,
+    //   ]);
+    // }
+    // if (newNoteTask.type === 'note') {
+    //   setNotes((notes) => [
+    //     {
+    //       id: `note-${notes.length + 1}`,
+    //       type: newNoteTask.type,
+    //       content: newNoteTask.content,
+    //     },
+    //     ...notes,
+    //   ]);
+    // }
+  };
   // const handleToggleComplete = (id) => {
   //   setTasks((tasks) =>
   //     tasks.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
@@ -131,7 +149,7 @@ const App = () => {
         <h1 className="heading">Notes & Tasks Dashboard</h1>
         <Create
           onCreateQuoteNote={handleCreateQuoteNote}
-          // onCreateNoteTask={handleCreateNoteTask}
+          onCreateNoteTask={handleCreateNoteTask}
         />
       </header>
       <main>
