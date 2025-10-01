@@ -30,6 +30,8 @@
 }
 
 .quote-dialog dialog .content {
+  position: relative;
+  /* relative position to place the quote pseudo elements */
   font-size: 2rem;
   /* border: 2px solid red; */
   flex: 1;
@@ -44,23 +46,23 @@
 }
 
 .quote-dialog dialog .quote {
-  position: relative;
   display: flex;
+  align-items: center;
 }
 
 .quote-dialog dialog .quote::before,
 .quote-dialog dialog .quote::after {
   content: open-quote;
   position: absolute;
-  top: -1ch;
-  left: 0;
+  top: 20%;
+  left: 1ch;
   font-size: 6rem;
   color: var(--brand-300);
 }
 
 .quote-dialog dialog .quote::after {
   content: close-quote;
-  right: 0;
+  right: 1ch;
   left: auto;
 }
 
@@ -71,6 +73,7 @@ dialog .quote p {
 
 .quote-dialog dialog .quote button {
   background-color: var(--brand-900);
+  height: 10rem;
   border: none;
   color: var(--brand-500);
   font-size: 1.5em;

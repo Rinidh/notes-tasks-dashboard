@@ -20,16 +20,8 @@ const App = () => {
       type: 'create-quote-note',
       quoteObj: quoteObj,
     });
-    // setNotes((notes) => [
-    //   {
-    //     id: `note-${notes.length + 1}`,
-    //     type: 'note',
-    //     content: quoteObj.quote,
-    //     author: quoteObj.author,
-    //   },
-    //   ...notes,
-    // ]);
   };
+
   const handleCreateNoteTask = (newNoteTask) => {
     if (newNoteTask.type === 'note') {
       dispatchNotes({
@@ -43,53 +35,15 @@ const App = () => {
         newNoteTask,
       });
     }
-
-    // Using setState() in concise way
-    // const { type, content } = newNoteTask;
-    // const setState =
-    //   type === 'note' ? setNotes : type === 'task' ? setTasks : null;
-
-    // setState((items) => [
-    //   {
-    //     id: `${items[0].id.split('-')[0]}-${items.length + 1}`,
-    //     type,
-    //     content,
-    //     done: false,
-    //   },
-    //   ...items,
-    // ]);
-
-    // Using setState() in verbose way
-    // if (newNoteTask.type === 'task') {
-    //   setTasks((tasks) => [
-    //     {
-    //       id: `task-${tasks.length + 1}`,
-    //       type: newNoteTask.type,
-    //       content: newNoteTask.content,
-    //     },
-    //     ...tasks,
-    //   ]);
-    // }
-    // if (newNoteTask.type === 'note') {
-    //   setNotes((notes) => [
-    //     {
-    //       id: `note-${notes.length + 1}`,
-    //       type: newNoteTask.type,
-    //       content: newNoteTask.content,
-    //     },
-    //     ...notes,
-    //   ]);
-    // }
   };
+
   const handleToggleComplete = (id) => {
     dispatchTasks({
       type: 'toggle-complete',
       id,
     });
-    // setTasks((tasks) =>
-    //   tasks.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
-    // );
   };
+
   const handleDelete = (id, type) => {
     if (type === 'note') {
       dispatchNotes({
@@ -103,9 +57,6 @@ const App = () => {
         id,
       });
     }
-    // const setState =
-    //   type === 'note' ? setNotes : type === 'task' ? setTasks : null;
-    // setState((items) => items.filter((i) => i.id !== id));
   };
 
   return (
