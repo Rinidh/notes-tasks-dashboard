@@ -5,7 +5,7 @@ const tasksReducer = (state, action) => {
     case 'create-new-task': {
       return [
         {
-          id: 'task-' + state.length + 1,
+          id: `task-${crypto?.randomUUID ? crypto.randomUUID() : Date.now()}`,
           type: action.newNoteTask.type,
           content: action.newNoteTask.content,
           done: false,

@@ -5,7 +5,7 @@ const notesReducer = (state, action) => {
     case 'create-quote-note': {
       return [
         {
-          id: state.length + 1,
+          id: `note-${crypto?.randomUUID ? crypto.randomUUID() : Date.now()}`,
           type: 'note',
           content: action.quoteObj.quote,
           author: action.quoteObj.author,
@@ -16,7 +16,7 @@ const notesReducer = (state, action) => {
     case 'create-new-note': {
       return [
         {
-          id: 'note-' + state.length + 1,
+          id: `note-${crypto?.randomUUID ? crypto.randomUUID() : Date.now()}`,
           type: action.newNoteTask.type,
           content: action.newNoteTask.content,
         },
