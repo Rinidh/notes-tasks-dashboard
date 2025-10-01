@@ -27,6 +27,9 @@ const notesReducer = (state, action) => {
         ...state,
       ];
     }
+    case 'delete': {
+      return state.filter((note) => note.id !== action.id);
+    }
   }
 };
 
@@ -47,6 +50,9 @@ const tasksReducer = (state, action) => {
       return state.map((t) =>
         t.id === action.id ? { ...t, done: !t.done } : t
       );
+    }
+    case 'delete': {
+      return state.filter((task) => task.id !== action.id);
     }
   }
 };
@@ -180,10 +186,21 @@ const App = () => {
     // );
   };
   const handleDelete = (id, type) => {
-    const setState =
-      type === 'note' ? setNotes : type === 'task' ? setTasks : null;
-
-    setState((items) => items.filter((i) => i.id !== id));
+    if (type === 'note') {
+      dispatchNotes({
+        type: 'delete',
+        id,
+      });
+    }
+    if (type === 'task') {
+      dispatchTasks({
+        type: 'delete',
+        id,
+      });
+    }
+    // const setState =
+    //   type === 'note' ? setNotes : type === 'task' ? setTasks : null;
+    // setState((items) => items.filter((i) => i.id !== id));
   };
 
   return (
@@ -200,7 +217,7 @@ const App = () => {
           notes={notes}
           tasks={tasks}
           onToggleComplete={handleToggleComplete}
-          // onDelete={handleDelete}
+          onDelete={handleDelete}
         />
       </main>
     </div>
