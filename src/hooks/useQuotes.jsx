@@ -27,6 +27,7 @@ export default function useQuotes() {
         if (data.error) {
           setError(data.error);
           console.error('Error in fetching quotes:', data.error);
+          return;
         }
 
         // console.log(data);

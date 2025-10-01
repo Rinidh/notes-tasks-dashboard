@@ -93,7 +93,7 @@ export const QuoteDialog = ({
                 </p>
               )}
               {loading && <p>Loading...</p>}
-              {quotes[currentQuoteIndex]?.quote && (
+              {quotes[currentQuoteIndex]?.quote && !loading && (
                 <p style={{ display: 'inline-block' }}>
                   {quotes[currentQuoteIndex]?.quote}
                 </p>
