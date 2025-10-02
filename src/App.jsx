@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer } from 'react';
+import React, { useCallback } from 'react';
 import { Create } from './components/Create';
 import { CardsGrid } from './components/CardsGrid';
 import './style/App.css';
@@ -10,14 +10,14 @@ const App = () => {
   const { notes, dispatchNotes } = useNotes();
   const { tasks, dispatchTasks } = useTasks();
 
-  const handleCreateQuoteNote = (quoteObj) => {
+  const handleCreateQuoteNote = useCallback((quoteObj) => {
     dispatchNotes({
       type: 'create-quote-note',
       quoteObj: quoteObj,
     });
-  };
+  }, []); // use an empty deps array to create the function only once on initial render and prevent recreating or subsequent renders. No any other deps item that may change and recreation of function is not needed
 
-  const handleCreateNoteTask = (newNoteTask) => {
+  const handleCreateNoteTask = useCallback((newNoteTask) => {
     if (newNoteTask.type === 'note') {
       dispatchNotes({
         type: 'create-new-note',
@@ -30,16 +30,16 @@ const App = () => {
         newNoteTask,
       });
     }
-  };
+  }, []);
 
-  const handleToggleComplete = (id) => {
+  const handleToggleComplete = useCallback((id) => {
     dispatchTasks({
       type: 'toggle-complete',
       id,
     });
-  };
+  }, []);
 
-  const handleDelete = (id, type) => {
+  const handleDelete = useCallback((id, type) => {
     if (type === 'note') {
       dispatchNotes({
         type: 'delete',
@@ -52,7 +52,7 @@ const App = () => {
         id,
       });
     }
-  };
+  }, []);
 
   return (
     <div className="app">
