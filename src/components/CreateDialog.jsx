@@ -5,6 +5,7 @@ export const CreateDialog = ({ onCreateNoteTask }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [newNoteTask, setNewNoteTask] = useState({ type: 'note', content: '' }); //newNoteTask means new note or new task
   const dialogRef = useRef(null);
+  const textareaRef = useRef(null);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -15,6 +16,10 @@ export const CreateDialog = ({ onCreateNoteTask }) => {
       dialog.showModal();
       setNewNoteTask({ type: 'note', content: '' });
     } else dialog.close();
+
+    if (textareaRef.current) {
+      textareaRef.current.focus();
+    }
   }, [isOpen]);
 
   useEffect(() => {
@@ -87,6 +92,7 @@ export const CreateDialog = ({ onCreateNoteTask }) => {
           </fieldset>
           <fieldset>
             <textarea
+              ref={textareaRef}
               name="content"
               value={newNoteTask.content}
               onChange={function (e) {

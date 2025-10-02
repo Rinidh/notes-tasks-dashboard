@@ -1,71 +1,58 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import { Create } from './components/Create';
 import { CardsGrid } from './components/CardsGrid';
 import './style/App.css';
 import './style/fonts.css';
+import { useNotes } from './hooks/useNotes';
+import { useTasks } from './hooks/useTasks';
 
 const App = () => {
-  const [notes, setNotes] = useState(
-    () =>
-      JSON.parse(localStorage.getItem('noteTasksDashboard_notes')) || [
-        {
-          id: 'note-1',
-          type: 'note',
-          content: 'This is a sample note/quote.',
-        },
-      ]
-  );
-  const [tasks, setTasks] = useState(
-    () =>
-      JSON.parse(localStorage.getItem('noteTasksDashboard_tasks')) || [
-        {
-          id: 'task-1',
-          type: 'task',
-          content: 'This is a sample task.',
-          done: false,
-        },
-      ]
-  );
+  const { notes, dispatchNotes } = useNotes();
+  const { tasks, dispatchTasks } = useTasks();
 
-  useEffect(() => {
-    localStorage.setItem('noteTasksDashboard_notes', JSON.stringify(notes));
-    localStorage.setItem('noteTasksDashboard_tasks', JSON.stringify(tasks));
-  }, [notes, tasks]);
+  const handleCreateQuoteNote = useCallback((quoteObj) => {
+    dispatchNotes({
+      type: 'create-quote-note',
+      quoteObj: quoteObj,
+    });
+  }, []); // use an empty deps array to create the function only once on initial render and prevent recreating or subsequent renders. No any other deps item that may change and recreation of function is not needed
 
-  const handleCreateQuoteNote = (quoteObj) => {
-    setNotes((notes) => [
-      {
-        id: `note-${notes.length + 1}`,
-        type: 'note',
-        content: quoteObj.quote,
-        author: quoteObj.author,
-      },
-      ...notes,
-    ]);
-  };
-  const handleCreateNoteTask = (newNoteTask) => {
-    if (newNoteTask.type === 'task') {
-      setTasks((tasks) => [
-        {
-          id: `task-${tasks.length + 1}`,
-          type: newNoteTask.type,
-          content: newNoteTask.content,
-        },
-        ...tasks,
-      ]);
-    }
+  const handleCreateNoteTask = useCallback((newNoteTask) => {
     if (newNoteTask.type === 'note') {
-      setNotes((notes) => [
-        {
-          id: `note-${notes.length + 1}`,
-          type: newNoteTask.type,
-          content: newNoteTask.content,
-        },
-        ...notes,
-      ]);
+      dispatchNotes({
+        type: 'create-new-note',
+        newNoteTask,
+      });
     }
-  };
-  const handleToggleComplete = (id) => {};
+    if (newNoteTask.type === 'task') {
+      dispatchTasks({
+        type: 'create-new-task',
+        newNoteTask,
+      });
+    }
+  }, []);
+
+  const handleToggleComplete = useCallback((id) => {
+    dispatchTasks({
+      type: 'toggle-complete',
+      id,
+    });
+  }, []);
+
+  const handleDelete = useCallback((id, type) => {
+    if (type === 'note') {
+      dispatchNotes({
+        type: 'delete',
+        id,
+      });
+    }
+    if (type === 'task') {
+      dispatchTasks({
+        type: 'delete',
+        id,
+      });
+    }
+  }, []);
 
   return (
     <div className="app">
@@ -81,6 +68,7 @@ const App = () => {
           notes={notes}
           tasks={tasks}
           onToggleComplete={handleToggleComplete}
+          onDelete={handleDelete}
         />
       </main>
     </div>

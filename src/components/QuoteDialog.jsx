@@ -93,7 +93,7 @@ export const QuoteDialog = ({
                 </p>
               )}
               {loading && <p>Loading...</p>}
-              {quotes[currentQuoteIndex]?.quote && (
+              {quotes[currentQuoteIndex]?.quote && !loading && (
                 <p style={{ display: 'inline-block' }}>
                   {quotes[currentQuoteIndex]?.quote}
                 </p>
@@ -104,7 +104,9 @@ export const QuoteDialog = ({
               &gt;
             </button>
           </div>
-          <p className="author">{quotes[currentQuoteIndex]?.author}</p>
+          <p className="author">
+            {!loading && quotes[currentQuoteIndex]?.author}
+          </p>
         </div>
         <div className="buttons">
           <button className="accept lato-bold" onClick={handleAccept}>

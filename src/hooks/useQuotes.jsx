@@ -19,7 +19,7 @@ export default function useQuotes() {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            // 'X-Api-Key': apiKey,
+            'X-Api-Key': apiKey,
           },
         });
         const data = await response.json();
@@ -27,6 +27,7 @@ export default function useQuotes() {
         if (data.error) {
           setError(data.error);
           console.error('Error in fetching quotes:', data.error);
+          return;
         }
 
         // console.log(data);

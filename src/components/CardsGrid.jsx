@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from './Card';
 import '../style/CardsGrid.css';
 
-export const CardsGrid = ({ notes, tasks, onToggleComplete }) => {
+export const CardsGrid = ({ notes, tasks, onToggleComplete, onDelete }) => {
   const cards = [...notes, ...tasks];
 
   return (
@@ -12,6 +12,7 @@ export const CardsGrid = ({ notes, tasks, onToggleComplete }) => {
           key={card.id}
           infoObj={card}
           onToggleComplete={onToggleComplete}
+          onDelete={onDelete}
         />
       ))}
     </div>

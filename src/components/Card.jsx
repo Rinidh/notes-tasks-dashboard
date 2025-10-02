@@ -1,28 +1,36 @@
 import React from 'react';
 import '../style/Card.css';
 
-export const Card = ({ infoObj, onToggleComplete }) => {
-  const { id, type, content, author } = infoObj;
+export const Card = ({ infoObj, onToggleComplete, onDelete }) => {
+  const { id, type, content, author, done = false } = infoObj;
 
   return (
-    <div className={`card ${type}`}>
+    <article
+      className={`card ${type} ${done ? 'is-completed' : ''}`}
+      aria-label={`${type} card`}
+    >
       {author ? <em>{content}</em> : content}
       <br />
       <br />
-      <i>{author && author}</i>
+      <em>{author && author}</em>
 
       {type === 'task' && (
-        <div
+        <button
           className="toggle-complete"
           title="toggle complete"
           onClick={() => onToggleComplete(id)}
+          aria-pressed={done}
         >
           ✅
-        </div>
+        </button>
       )}
-      <div className="delete" title="delete">
+      <button
+        className="delete"
+        title="delete"
+        onClick={() => onDelete(id, type)}
+      >
         ❌
-      </div>
-    </div>
+      </button>
+    </article>
   );
 };

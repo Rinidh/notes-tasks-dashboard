@@ -36,3 +36,8 @@
 .card:hover .delete {
   opacity: 1;
 }
+
+.card.is-completed {
+  color: #ffffff85;
+  text-decoration-line: line-through;
+}
